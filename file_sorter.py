@@ -3,6 +3,8 @@ import shutil
 
 dir = input("Enter the path of the directory you want to sort:")
 
+preview = input("Do you want a preview? (y/n.)").lower() =="y"
+
 target_dir = Path(dir)
 
 file_types = {
@@ -15,16 +17,30 @@ file_types = {
     ".xlsx": "Excel_Files",
     ".docx": "Word_Documents",
 }
-
+preview_file = Path(rf"{dir}\Preview.txt")
 
 for file in target_dir.iterdir():
-    file_ex = Path(file).suffix
+    if file.is_file():
+        file_ex = Path(file).suffix.lower()
 
-    if file_ex in file_types:
-        my_dir = Path(f"{dir}\{file_types[file_ex]}")
-        my_dir.mkdir(exist_ok=True)
+        if file_ex in file_types:
 
-        shutil.move(file,f"{dir}\{file_types[file_ex]}")
+            if preview:
+                with open(preview_file, "a") as f:
+                    f.write(f"Would move:{file} --> {dir}\{file_types[file_ex]} \n")
+            
+            else:
 
-        with open(rf"{dir}\Log.txt", "a") as f:
-            f.write(f"{file} was moved to {dir}\{file_types[file_ex]} \n")
+    
+                shutil.move(file,f"{dir}\{file_types[file_ex]}")
+
+                with open(rf"{dir}\Log.txt", "a") as f:
+                    f.write(f"{file} was moved to {dir}\{file_types[file_ex]} \n")
+
+if preview:
+    print("Run again without dry-run to actually move files.")
+
+    
+
+
+            
