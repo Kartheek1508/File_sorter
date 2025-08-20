@@ -10,7 +10,10 @@ file_types = {
     ".exe" : "Applications",
     ".zip" : "Zip_files",
     ".jpeg": "Images",
-    ".png" : "Images"
+    ".png" : "Images",
+    ".jpg" : "Images",
+    ".xlsx": "Excel_Files",
+    ".docx": "Word_Documents",
 }
 
 
@@ -23,3 +26,5 @@ for file in target_dir.iterdir():
 
         shutil.move(file,f"{dir}\{file_types[file_ex]}")
 
+        with open(rf"{dir}\Log.txt", "a") as f:
+            f.write(f"{file} was moved to {dir}\{file_types[file_ex]} \n")
