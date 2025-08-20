@@ -1,14 +1,19 @@
 # File_sorter
-A python script that sorts messy directories and organises the files into catogeraized folders.
+A python script that sorts messy directories and organises the files into categorized folders.
 
-##Features:
+**Features:**
  - Sorts files into their respective folders
- - Handles all the files safely
+ - **Safe operation** - doesn't overwrite existing files
  - All unsupported files are not touched and the program moves on
 
-##Supports:
+**Supports:**
 - Images : .png, .jpeg
 - Documents: .pdf
 - Applications : .exe
 - Zip files
+- 
+**Requirements:**
+- Python 3.6+
 
+**Usage:**
+Run the script with: **python file_organizer.py**
