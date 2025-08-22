@@ -30,12 +30,9 @@ for file in target_dir.iterdir():
                     f.write(f"Would move:{file} --> {dir}\{file_types[file_ex]} \n")
             
             else:
-
-    
-                shutil.move(file,f"{dir}\{file_types[file_ex]}")
-
-                with open(rf"{dir}\Log.txt", "a") as f:
-                    f.write(f"{file} was moved to {dir}\{file_types[file_ex]} \n")
+                folder_path = Path(f"{dir}\\{file_types[file_ex]}")
+                folder_path.mkdir(exist_ok=True) 
+                shutil.move(file, folder_path)  # Use the Path object consistently
 
 if preview:
     print("Run again without dry-run to actually move files.")
